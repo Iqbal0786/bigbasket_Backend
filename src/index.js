@@ -39,10 +39,16 @@ passport.serializeUser(function(user,done){
 passport.deserializeUser(function(user,done){
     return done(null, user)
   })
+app.get("",async(req,res)=>{
+  try {
+    return res.send("Server is live now")
+  } catch (error) {
+    return res.send(error.message)
+  }
+})
 
-
-
-app.listen(9999,async()=>{
+const port=process.env.PORT||9999;
+app.listen(port,async()=>{
     try {
          await connect();
          console.log("Listening the port number 9999");
